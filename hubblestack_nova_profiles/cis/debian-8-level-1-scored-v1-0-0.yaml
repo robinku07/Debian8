@@ -396,6 +396,7 @@ stat:
         - '/boot/grub/grub.cfg':
             tag: 'CIS-3.2'
             mode: 600
+            allow_more_strict: true
     description: Set Permissions on bootloader config
 
     boot_loader_passwd:
@@ -788,3 +789,17 @@ pkg:
         Debian*8:
           - 'libpam-cracklib': 'CIS-9.2.1'
       description: Set Password Creation Requirement Parameters Using pam_cracklib
+misc:
+  sticky_bit_on_world_writable_directories:
+    data:
+      Debian*8:
+        tag: CIS-2.17
+        function: sticky_bit_on_world_writable_dirs
+    description: Ensure sticky bit is set on all world-writable directories
+systemctl:
+  blacklist:
+    disable_automounting:
+      data:
+        Debian*8:
+        - autofs: CIS-2.25
+      description: Disable Automounting 
