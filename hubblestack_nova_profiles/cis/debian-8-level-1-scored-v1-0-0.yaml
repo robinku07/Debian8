@@ -357,6 +357,127 @@ grep:
               tag: 'CIS-3.4'
               pattern: "^root:[*\\!]:"
       description: Require Authentication for Single-User Mode
+    chargen:
+      data:
+        Debian*8:
+        - /etc/xinetd.d/chargen:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: chargen-stream
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.2
+        - /etc/xinetd.d/chargen:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: chargen-dgram
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.2
+        - /etc/inetd.conf:
+            pattern: '^chargen'
+            match_output_regex: True
+            tag: CIS-5.2
+      description: Ensure Chargen Services are not Enabled
+    daytime:
+      data:
+        Debian*8:
+        - /etc/xinetd.d/daytime:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: daytime-stream
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.3
+        - /etc/xinetd.d/daytime:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: daytime-dgram
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.3
+        - /etc/inetd.conf:
+            pattern: '^daytime'
+            match_output_regex: True
+            tag: CIS-5.3
+      description: Ensure daytime services are not enabled
+
+    echo:
+      data:
+        Debian*8:
+        - /etc/xinetd.d/echo:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: echo-stream
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.4
+        - /etc/xinetd.d/echo:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: echo-dgram
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.4
+        - /etc/inetd.conf:
+            pattern: '^echo'
+            match_output_regex: True
+            tag: CIS-5.4
+      description: Ensure echo services are not enabled
+
+    discard:
+      data:
+        Debian*8:
+        - /etc/xinetd.d/discard:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: discard-stream
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.5
+        - /etc/xinetd.d/discard:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: discard-dgram
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.5
+        - /etc/inetd.conf:
+            pattern: '^discard'
+            match_output_regex: True
+            tag: CIS-5.5
+      description: Ensure discard services are not enabled
+    time:
+      data:
+        Debian*8:
+        - /etc/xinetd.d/time:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: time-stream
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.6
+        - /etc/xinetd.d/time:
+            match_output: '^\s*disable\s*=\s*no'
+            pattern: time-dgram
+            match_output_regex: True
+            grep_args:
+              - '-B'
+              - '3'
+            tag: CIS-5.6
+        - /etc/inetd.conf:
+            pattern: '^time'
+            match_output_regex: True
+      description: Ensure time Services are not Enabled
 
     legacy_passwd_entries_group:
       data:
@@ -707,6 +828,12 @@ pkg:
           - 'nis': 'CIS-5.1.1'
       description: Ensure NIS is not installed
 
+    talkd:
+      data:
+        Debian*8:
+        - talkd: CIS-5.1.4
+      description: Ensure Talk Server is not enabled
+
     rsh-clients:
       data:
         Debian*8:
@@ -735,8 +862,8 @@ pkg:
     tftp:
       data:
         Debian*8:
-          - 'tftp': 'CIS-5.1.7'
-          - 'atftp': 'CIS-5.1.7'
+          - 'tftpd': 'CIS-5.1.7'
+          - 'atftpd': 'CIS-5.1.7'
       description: Ensure tftp-server is not enabled
 
     xinetd:
