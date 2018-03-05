@@ -1127,6 +1127,100 @@ misc:
        tag: CIS-13.1
        function: check_password_fields_not_empty
     description: Ensure Password Fields are Not Empty
+  root_is_only_uid_0_account:
+    data:
+      Debian*8:
+       tag: CIS-13.5
+       function: root_is_only_uid_0_account
+    description: Verify No UID 0 Accounts Exist Other Than root
+  ensure_path_integrity:
+    data:
+      Debian*8:
+       tag: CIS-13.6
+       function: check_path_integrity
+    description: Ensure root PATH Integrity
+  all_users_home_directory_permission:
+    data:
+      Debian*8:
+       tag: CIS-13.7
+       function: check_users_home_directory_permissions
+    description: Check Permissions on User Home Directories
+  check_users_dot_files_not_writable:
+    data:
+      Debian*8:
+        tag: CIS-13.8
+        function: check_users_dot_files
+    description: Check User Dot File Permissions
+  check_netrc_files_not_world_writable:
+    data:
+      Debian*8:
+        tag: CIS-13.9
+        function: check_netrc_files_accessibility
+    description: Check Permissions on User .netrc Files
+  check_no_users_have_rhosts_files:
+    data:
+      Debian*8:
+        tag: CIS-13.10
+        function: check_users_rhosts_files
+    description: Check for Presence of User .rhosts Files
+  check_groups_validity_in_systemfiles:
+    data:
+      Debian*8:
+        tag: CIS-13.11
+        function: check_groups_validity
+    description: Check Groups in /etc/passwd
+  valid_home_directory:
+    data:
+      Debian*8:
+        tag: CIS-13.12
+        function: check_all_users_home_directory
+        args:
+        - 1000
+    description: Check That Users Are Assigned Valid Home Directories
+  user_own_home_directory:
+    data:
+      Debian*8:
+        tag: CIS-13.13
+        function: check_users_own_their_home
+        args:
+        - 1000
+    description: Check User Home Directory Ownership
+  no_duplicate_sid:
+    data:
+      Debian*8:
+        tag: CIS-13.14
+        function: check_duplicate_uids
+    description: Check for Duplicate UIDs
+  no_duplicate_gid:
+    data:
+      Debian*8:
+        tag: CIS-13.15
+        function: check_duplicate_gids
+    description: Check for Duplicate GIDs
+  check_duplicate_unames_exist:
+    data:
+      Debian*8:
+        tag: CIS-13.16
+        function: check_duplicate_unames
+    description: Check for Duplicate User Names
+  check_duplicate_gnames_exist:
+    data:
+      Debian*8:
+        tag: CIS-13.17
+        function: check_duplicate_gnames
+    description: Check for Duplicate Group Names
+  check_no_users_netrc_files:
+    data:
+      Debian*8:
+        tag: CIS-13.18
+        function: check_users_netrc_files
+    description: Check for Presence of User .netrc Files
+  check_users_not_forward_files:
+    data:
+      Debian*8:
+        tag: CIS-13.19
+        function: check_users_forward_files
+    description: Check for Presence of User .forward Files
 systemctl:
   blacklist:
     disable_automounting:
