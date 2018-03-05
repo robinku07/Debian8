@@ -561,7 +561,25 @@ grep:
             match_output_regex: True
             tag: CIS-5.6
       description: Ensure time Services are not Enabled
-
+    remove_os_info:
+      data:
+        Debian*8:
+        - /etc/motd:
+            pattern: '"(\\\v|\\\r|\\\m|\\\s)"'
+            grep_args:
+              - '-E'
+            tag: CIS-11.2
+        - /etc/issue:
+            pattern: '"(\\\v|\\\r|\\\m|\\\s)"'
+            grep_args:
+              - '-E'
+            tag: CIS-11.2
+        - /etc/issue.net:
+            pattern: '"(\\\v|\\\r|\\\m|\\\s)"'
+            grep_args:
+              - '-E'
+            tag: CIS-11.2
+      description: Remove OS Information from Login Warning Banners
     legacy_passwd_entries_group:
       data:
         Debian*8:
@@ -726,7 +744,34 @@ stat:
             group: 'root'
             allow_more_strict: true
     description: Set Permissions on /etc/ssh/sshd_config
-
+  banner_files_perm:
+    data:
+      Debian*8:
+      - /etc/issue:
+          uid: 0
+          gid: 0
+          user: root
+          group: root
+          mode: 644
+          tag: CIS-11.1
+          allow_more_strict: true
+      - /etc/issue.net:
+          uid: 0
+          gid: 0
+          user: root
+          group: root
+          mode: 644
+          tag: CIS-11.1
+          allow_more_strict: true
+      - /etc/motd:
+          uid: 0
+          gid: 0
+          user: root
+          group: root
+          mode: 644
+          tag: CIS-11.1
+          allow_more_strict: true
+    description: Set Warning Banner for Standard Login Services
   passwd_perm:
     data:
       Debian*8:
@@ -768,8 +813,8 @@ stat:
       Debian*8:
         - '/etc/group':
             tag: 'CIS-12.3'
-            user: 'root'
-            group: 'root'
+            mode: 644
+            allow_more_strict: true
     description: Verify Permissions on /etc/group
 
   group_own:
@@ -1064,6 +1109,24 @@ misc:
         tag: CIS-10.3
         function: default_group_for_root
     description: Set Default Group for root Account
+  no_unowned_file_or_directories:
+    data:
+      Debian*8:
+        tag: CIS-12.8
+        function: unowned_files_or_dir
+    description: Find Un-owned Files and Directories
+  no_ungrouped_file_or_directories:
+    data:
+      Debian*8:
+       tag: CIS-12.9
+       function: ungrouped_files_or_dir
+    description: Find Un-grouped Files and Directories
+  ensure_password_fields_non_empty:
+    data:
+      Debian*8:
+       tag: CIS-13.1
+       function: check_password_fields_not_empty
+    description: Ensure Password Fields are Not Empty
 systemctl:
   blacklist:
     disable_automounting:
