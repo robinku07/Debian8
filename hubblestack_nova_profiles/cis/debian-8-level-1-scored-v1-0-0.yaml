@@ -3,26 +3,8 @@
 #       organization's specific policy.  Search for '# NOTE: ' comments through the file.
 
 # TODO: Checks that aren't implemented yet:
-#       2.17
-#       2.25
-#       3.3
-#       5.1.4
-#       5.2-6
-#       6.16
-#       8.2.2
 #       8.2.4 Depends on Users Configuration
-#       9.1.1
-#       9.1.8
-#       10.2
-#       10.3
-#       10.5
-#       11.1
-#       11.2
-#       12.8
-#       12.9
-#       13.1
-#       13.5-20
-
+#	13.20 Need Code side handling
 grep:
   whitelist:
 
@@ -805,7 +787,7 @@ stat:
         - '/etc/shadow':
             tag: 'CIS-12.5'
             user: 'root'
-            group: 'root'
+            group: 'shadow'
     description: Verify User/Group Ownership on /etc/shadow
 
   group_perm:
