@@ -423,7 +423,14 @@ grep:
               - '-E'
             tag: CIS-10.4
       description: Set Default umask for Users
-
+    lock_inactive:
+      data:
+        Debian*8:
+        - /etc/default/useradd:
+            pattern: ^INACTIVE
+            match_output: "35"
+            tag: CIS-10.5
+      description: Lock Inactive User Accounts
   blacklist:
     single_user_auth:
       data:
