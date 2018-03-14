@@ -156,7 +156,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.1'
               pattern: "^Protocol"
-              match_output: 'Protocol 2'
+              match_output: 'Protocol\s+2'
+              match_output_regex: True
       description: Set SSH Protocol to 2
 
     sshd_loglevel_info:
@@ -165,7 +166,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.2'
               pattern: "^LogLevel"
-              match_output: 'LogLevel INFO'
+              match_output: 'LogLevel\s+INFO'
+              match_output_regex: True
       description: Set LogLevel to INFO
 
     sshd_x11_forwarding:
@@ -174,7 +176,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.4'
               pattern: "^X11Forwarding"
-              match_output: 'X11Forwarding no'
+              match_output: 'X11Forwarding\s+no'
+              match_output_regex: True
       description: Disable SSH X11 Forwarding
 
     sshd_max_auth_retries:
@@ -184,7 +187,7 @@ grep:
               tag: 'CIS-9.3.5'
               pattern: "^MaxAuthTries"
               match_output_regex: True
-              match_output: "^MaxAuthTries +[1-4]$"
+              match_output: "^MaxAuthTries\s+[1-4]$"
       description: Set SSH MaxAuthTries to 4 or Less
 
     sshd_ignore_rhosts:
@@ -193,7 +196,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.6'
               pattern: "^IgnoreRhosts"
-              match_output: "IgnoreRhosts yes"
+              match_output: "IgnoreRhosts\s+yes"
+              match_output_regex: True
       description: Set SSH IgnoreRhosts to Yes
 
     sshd_hostbased_auth:
@@ -202,7 +206,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.7'
               pattern: "^HostbasedAuthentication"
-              match_output: "HostbasedAuthentication no"
+              match_output: "HostbasedAuthentication\s+no"
+              match_output_regex: True
       description: Set SSH HostbasedAuthentication to No
 
     sshd_disable_root_login:
@@ -211,7 +216,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.8'
               pattern: "^PermitRootLogin"
-              match_output: "PermitRootLogin no"
+              match_output: "PermitRootLogin\s+no"
+              match_output_regex: True
       description: Disable SSH Root Login
 
     sshd_permit_empty_passwords:
@@ -220,7 +226,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.9'
               pattern: "^PermitEmptyPasswords"
-              match_output: "PermitEmptyPasswords no"
+              match_output: "PermitEmptyPasswords\s+no"
+              match_output_regex: True
       description: Set SSH PermitEmptyPasswords to No
 
     sshd_permit_user_environment:
@@ -229,7 +236,8 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.10'
               pattern: "^PermitUserEnvironment"
-              match_output: "PermitUserEnvironment no"
+              match_output: "PermitUserEnvironment\s+no"
+              match_output_regex: True
       description: Do Not Allow Users to Set Environment Options
 
     sshd_approved_cipher:
@@ -248,12 +256,12 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.12'
               pattern: "^ClientAliveInterval"
-              match_output: ^ClientAliveInterval +([1-2]{0,1}\d{1,2}|300)$
+              match_output: ^ClientAliveInterval\s+([1-2]{0,1}\d{1,2}|300)$
               match_output_regex: True
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.12'
               pattern: "^ClientAliveCountMax"
-              match_output: "^ClientAliveCountMax +[0-3]$"
+              match_output: "^ClientAliveCountMax\s+[0-3]$"
               match_output_regex: True
       description: Set Idle Timeout Interval for User Login
 
@@ -262,16 +270,9 @@ grep:
         Debian*7:
           - '/etc/ssh/sshd_config':
               tag: 'CIS-9.3.13'
-              pattern: "^AllowUsers"
-          - '/etc/ssh/sshd_config':
-              tag: 'CIS-9.3.13'
-              pattern: "^AllowGroups"
-          - '/etc/ssh/sshd_config':
-              tag: 'CIS-9.3.13'
-              pattern: "^DenyUsers"
-          - '/etc/ssh/sshd_config':
-              tag: 'CIS-9.3.13'
-              pattern: "^DenyGroups"
+              pattern: '^AllowUsers|^AllowGroups|^DenyUsers|^DenyGroups'
+              grep_args:
+                - '-E'
       description: Limit Access via SSH
 
     sshd_banner:
