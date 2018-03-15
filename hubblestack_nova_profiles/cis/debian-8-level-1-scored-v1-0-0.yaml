@@ -22,15 +22,6 @@ grep:
               match_output_regex: True
               match_on_file_missing: True 
       description: Configure Mail Transfer Agent for Local-Only Mode
-    rsync:
-      data:
-        Debian*8:
-          - '/etc/default/rsync':
-              pattern: ^RSYNC_ENABLE
-              match_output: 'false'
-              tag: CIS-6.16
-      description: Ensure rsync service is not enabled
-
     mounts_tmp_partition:
       data:
         Debian*8:
@@ -148,7 +139,9 @@ grep:
         Debian*8:
           - '/etc/ntp.conf':
               tag: CIS-6.5
-              pattern: 'restrict default'
+              pattern: "^restrict.*default +kod +nomodify +notrap +nopeer +noquery"
+              grep_args:
+                - 'E'
           - '/etc/ntp.conf':
               pattern: '^server'
               tag: CIS-6.5
@@ -1211,6 +1204,11 @@ systemctl:
         Debian*8:
         - autofs: CIS-2.25
       description: Disable Automounting
+    rsync-enabled:
+      data:
+        Debian*8:
+        - rsync: CIS-6.16
+      description: Ensure rsync service is not enabled
     avahi-daemon-disabled:
       data:
         Debian*8:
