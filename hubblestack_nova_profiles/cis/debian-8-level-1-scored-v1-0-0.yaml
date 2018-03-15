@@ -238,7 +238,7 @@ grep:
               tag: CIS-9.3.5
               pattern: "^MaxAuthTries"
               match_output_regex: True
-              match_output: "^MaxAuthTries\s+[1-4]$"
+              match_output: '^MaxAuthTries\s+[1-4]$'
       description: Set SSH MaxAuthTries to 4 or Less
 
     sshd_ignore_rhosts:
@@ -247,7 +247,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.6
               pattern: "^IgnoreRhosts"
-              match_output: "IgnoreRhosts\s+yes"
+              match_output: 'IgnoreRhosts\s+yes'
               match_output_regex: True
       description: Set SSH IgnoreRhosts to Yes
 
@@ -257,7 +257,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.7
               pattern: "^HostbasedAuthentication"
-              match_output: "HostbasedAuthentication\s+no"
+              match_output: 'HostbasedAuthentication\s+no'
               match_output_regex: True
       description: Set SSH HostbasedAuthentication to No
 
@@ -267,7 +267,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.8
               pattern: "^PermitRootLogin"
-              match_output: "PermitRootLogin\s+no"
+              match_output: 'PermitRootLogin\s+no'
               match_output_regex: True
       description: Disable SSH Root Login
 
@@ -277,7 +277,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.9
               pattern: "^PermitEmptyPasswords"
-              match_output: "PermitEmptyPasswords\s+no"
+              match_output: 'PermitEmptyPasswords\s+no'
               match_output_regex: True
       description: Set SSH PermitEmptyPasswords to No
 
@@ -287,7 +287,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.10
               pattern: "^PermitUserEnvironment"
-              match_output: "PermitUserEnvironment\s+no"
+              match_output: 'PermitUserEnvironment\s+no'
               match_output_regex: True
       description: Do Not Allow Users to Set Environment Options
 
@@ -312,7 +312,7 @@ grep:
           - '/etc/ssh/sshd_config':
               tag: CIS-9.3.12
               pattern: "^ClientAliveCountMax"
-              match_output: "^ClientAliveCountMax\s+[0-3]$"
+              match_output: '^ClientAliveCountMax\s+[0-3]$'
               match_output_regex: True
       description: Set Idle Timeout Interval for User Login
 
