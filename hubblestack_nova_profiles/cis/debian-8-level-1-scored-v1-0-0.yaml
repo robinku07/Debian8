@@ -29,7 +29,6 @@ grep:
               tag: CIS-2.1
               pattern: '/tmp'
       description: Create Separate Partition for /tmp
-      control: No such partition
     mounts_tmp_partition_nodev:
       data:
         Debian*8:
@@ -38,7 +37,6 @@ grep:
               pattern: '/tmp'
               match_output: 'nodev'
       description: Set nodev option for /tmp Partition
-      control: No such partition
 
     mounts_tmp_partition_nosuid:
       data:
@@ -48,7 +46,6 @@ grep:
               pattern: '/tmp'
               match_output: 'nosuid'
       description: Set nosuid option for /tmp Partition
-      control: No such partition
     mounts_tmp_partition_noexec:
       data:
         Debian*8:
@@ -57,7 +54,6 @@ grep:
               pattern: '/tmp'
               match_output: 'noexec'
       description: Set noexec option for /tmp Partition
-      control: No such partition
 
     mounts_var_partition:
       data:
@@ -66,7 +62,6 @@ grep:
               tag: CIS-2.5
               pattern: '/var'
       description: Create Separate Partition for /var
-      control: No such partition
     fstab_var_tmp_bind_mount:
       data:
         Debian*8:
@@ -83,7 +78,6 @@ grep:
               tag: CIS-2.7
               pattern: '/var/log'
       description: Create Separate Partition for /var/log
-      control: No such partition
     mounts_var_log_audit_partition:
       data:
         Debian*8:
@@ -91,7 +85,6 @@ grep:
               tag: CIS-2.8
               pattern: '/var/log/audit'
       description: Create Separate Partition for /var/log/audit
-      control: No such partition
     mounts_home_partition:
       data:
         Debian*8:
@@ -99,7 +92,6 @@ grep:
               tag: CIS-2.9
               pattern: '/home'
       description: Create Separate Partition for /home
-      control: No such partition
     mounts_home_partition_nodev:
       data:
         Debian*8:
@@ -108,7 +100,6 @@ grep:
               pattern: '/home'
               match_output: 'nodev'
       description: Add nodev Option to /home
-      control: No such partition
     mounts_dev_shm_partition_nodev:
       data:
         Debian*8:
