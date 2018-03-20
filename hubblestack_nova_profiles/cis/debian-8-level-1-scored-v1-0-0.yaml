@@ -462,6 +462,52 @@ systemctl:
         Debian*8:
         - rsync: CIS-6.16
       description: Ensure rsync service is not enabled
+    cups-disabled:
+      data:
+        Debian*8:
+        - cups: CIS-6.3
+      description: Ensure print server is not enabled
+    ldap-server-disabled:
+      data:
+        Debian*8:
+        - slapd: CIS-6.6
+      description: Ensure LDAP server is not enabled
+    dns-server-disabled:
+      data:
+        Debian*8:
+        - bind9: CIS-6.8
+      description: Ensure DNS Server is not enabled
+    ftp-server-disabled:
+      data:
+        Debian*8:
+        - vsftpd: CIS-6.9
+      description: Ensure FTP Server is not enabled
+    imap-pop3-server-disabled:
+      data:
+        Debian*8:
+        - dovecot: CIS-6.11
+      description: Ensure IMAP and POP3 server is not enabled
+    samba-server-disabled:
+      data:
+        Debian*8:
+        - samba: CIS-6.12
+      description: Ensure Samba is not enabled
+    http-proxy-server-disabled:
+      data:
+        Debian*8:
+        - squid: CIS-6.13
+      description: Ensure HTTP Proxy Server is not enabled
+    snmp-server-disabled:
+      data:
+        Debian*8:
+        - snmpd: CIS-6.14
+      description: Ensure SNMP Server is not enabled
+    nfs-rpcbind-disabled:
+      data:
+        Debian*8:
+        - nfs-kernel-server: CIS-6.7
+        - rpcbind: CIS-6.7
+      description: Ensure NFS and RPC are not enabled
   whitelist:
     rsyslog-enabled:
       data:
